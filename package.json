@@ -1,0 +1,39 @@
+{
+  "name": "reviewscan",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "angular": "^1.7.0",
+    "angular-d3-word-cloud": "^0.5.3",
+    "angular-smart-table": "^2.1.11",
+    "angular-spinner": "^1.0.1",
+    "body-parser": "^1.18.3",
+    "cheerio": "^1.0.0-rc.2",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.16.0",
+    "http-errors": "~1.6.2",
+    "morgan": "~1.9.0",
+    "node-ngram": "0.0.8",
+    "npm": "^6.0.1",
+    "pug": "2.0.0-beta11",
+    "request": "^2.86.0",
+    "sentiment": "^5.0.0",
+    "stopword": "^0.1.10",
+    "underscore": "^1.9.0"
+  },
+  "devDependencies": {
+    "browser-sync": "2.24.3",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "3.9.4",
+    "gulp-filter": "5.1.0",
+    "gulp-header": "2.0.5",
+    "gulp-nodemon": "^2.2.1",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "4.0.1",
+    "gulp-uglify": "3.0.0"
+  }
+}
