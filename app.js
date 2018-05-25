@@ -7,6 +7,7 @@ var bodyParser = require('body-parser')
 
 var indexRouter = require('./routes/index');
 var scanRouter = require('./routes/scan');
+var flipkartRouter = require('./routes/flipkartScan');
 var app = express();
 
 // view engine setup
@@ -23,6 +24,7 @@ app.use(express.static(path.join(__dirname, 'node_modules')));
 
 app.use('/', indexRouter);
 app.use('/scan', scanRouter);
+app.use('/flipkartScan', flipkartRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

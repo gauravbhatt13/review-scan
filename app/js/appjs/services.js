@@ -1,15 +1,15 @@
 var app = angular.module('reviewScan');
 app.service('analyzeService', function ($http, $q) {
-    var analyzedData = undefined;
 
     this.analyze = function (url) {
+        var analyzedData = undefined;
         if(!analyzedData){
             var deferred = $q.defer();
 
             var postMsg = {url:url};
             $http({
                 method: 'POST',
-                url: '/scan',
+                url: url.includes('flipkart') ? '/flipkartScan':'scan',
                 data: postMsg,
                 headers: {'Content-Type': 'application/json'}
             }).then(function (response) {

@@ -1,9 +1,9 @@
 var app = angular.module('reviewScan');
 app.controller('analyzeCtrl', function ($scope, analyzeService, usSpinnerService) {
     $scope.url='';
-    $scope.showWordCloud=false;
-    $scope.rowCollection = [];
-    $scope.analyze = function (){
+    $scope.scan = function (){
+        $scope.showWordCloud=false;
+        $scope.rowCollection = [];
         usSpinnerService.spin('spinner-1');
         analyzeService.analyze($scope.url).then(function (analyzedData) {
             var wordCloud = [];

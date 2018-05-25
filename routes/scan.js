@@ -78,8 +78,7 @@ var recursiveFunction = function (baseUrl, url, $, res, callback) {
             var nextPage = $('li[class="a-selected page-button"]').next().children('a').attr('href');
             console.log('next page : ' + nextPage);
             if (nextPage != undefined) {
-                recursiveFunction(baseUrl, baseUrl + $('li[class="a-selected page-button"]').next()
-                    .children('a').attr('href'), $, res, callback);
+                recursiveFunction(baseUrl, baseUrl + nextPage, $, res, callback);
             } else {
                 callback($, res);
             }
