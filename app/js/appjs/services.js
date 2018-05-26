@@ -1,5 +1,6 @@
 var app = angular.module('reviewScan');
 app.service('analyzeService', function ($http, $q) {
+    var analyzedData = {};
 
     this.analyze = function (url) {
         var analyzedData = undefined;
@@ -20,5 +21,13 @@ app.service('analyzeService', function ($http, $q) {
             analyzedData = deferred.promise;
         }
         return $q.when(analyzedData);
-    }
+    };
+
+    this.setAnalyzedData = function (data) {
+        analyzedData = data;
+    };
+
+    this.getAnalyzedData = function () {
+        return analyzedData;
+    };
 });

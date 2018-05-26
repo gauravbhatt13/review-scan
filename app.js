@@ -3,10 +3,10 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var bodyParser = require('body-parser')
+var bodyParser = require('body-parser');
 
 var indexRouter = require('./routes/index');
-var scanRouter = require('./routes/scan');
+var scanRouter = require('./routes/amazonScan');
 var flipkartRouter = require('./routes/flipkartScan');
 var app = express();
 

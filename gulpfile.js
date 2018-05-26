@@ -19,6 +19,11 @@ var banner = ['/*!\n',
 
 // Copy third party libraries from /node_modules into /vendor
 gulp.task('vendor', function () {
+    //UI Router
+    gulp.src([
+        './node_modules/@uirouter/angularjs/release/angular-ui-router.js'
+    ])
+        .pipe(gulp.dest('./app/vendor/@uirouter'))
     //Angular smart-table
     gulp.src([
         './node_modules/angular-smart-table/dist/smart-table.js'

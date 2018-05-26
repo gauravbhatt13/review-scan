@@ -20,7 +20,7 @@ router.post('/', function (req, res, next) {
 
 var init = function () {
     callbackCounter = 0;
-    aggregateReviews = [];
+    aggregateReviews = '';
     responseData = {};
     maxReviewPages = 0;
     sentiment = new Sentiment();
@@ -31,11 +31,16 @@ var callback = function ($, res) {
     console.log('callback called : ' + callbackCounter);
     if (callbackCounter == 1) {
         console.log('returning response');
+
+        var replacedCharsTitle = aggregateReviews.replace(/[^a-zA-Z0-9 ]/g, "");
+        var splitTitle = replacedCharsTitle.split(' ');
+        var stopWordsRemovedArray = sw.removeStopwords(splitTitle);
+
         var ngram = new Ngram({
             n: 2
         });
 
-        var bigram = ngram.ngram(aggregateReviews.join(' '));
+        var bigram = ngram.ngram(stopWordsRemovedArray.join(' '));
         var combined = [];
         bigram.forEach(function (item) {
             combined.push(item.join(' '));
@@ -58,7 +63,6 @@ var handleFewReviews = function (req, res) {
     request(req.body.url, function (error, response, html) {
         if (!error && response.statusCode == 200) {
             var $ = cheerio.load(html);
-
             var allReviews = baseUrl + $('a[id="acrCustomerReviewLink"]').attr('href');
             recursiveFunction(baseUrl, allReviews, $, res, callback);
         }
@@ -66,11 +70,10 @@ var handleFewReviews = function (req, res) {
 };
 
 var recursiveFunction = function (baseUrl, url, $, res, callback) {
-    console.log('called page: ' + maxReviewPages);
     console.log('called service: ' + url);
     if (maxReviewPages++ < 5) {
         request(url, function (error, response, html) {
-            console.log('received response');
+            console.log('received response for page request : ' + maxReviewPages);
             $ = cheerio.load(html);
             $("[id^=customer_review-]").each(function (i, element) {
                 createReviews($, element);
@@ -91,23 +94,11 @@ var recursiveFunction = function (baseUrl, url, $, res, callback) {
 
 var createReviews = function ($, element) {
     var review = {};
-    var concatText = '';
     review.title = $(element).children().eq(0).children('a[data-hook="review-title"]').text();
-    review.date = $(element).children().eq(1).children('span[data-hook="review-date"]').text();
+    //review.date = $(element).children().eq(1).children('span[data-hook="review-date"]').text();
     review.comment = $(element).children().eq(3).children('span[data-hook="review-body"]').text();
 
-    var replacedCharsTitle = review.title.replace(/[^a-zA-Z0-9 ]/g, "");
-    var splitTitle = replacedCharsTitle.split(' ');
-    var stopWordsRemovedArray = sw.removeStopwords(splitTitle);
-    concatText = concatText.concat(stopWordsRemovedArray.join(' '));
-
-    var replacedCharsComment = review.comment.replace(/[^a-zA-Z ]/g, "");
-    var splitComment = replacedCharsComment.split(' ');
-    stopWordsRemovedArray = sw.removeStopwords(splitComment);
-
-    concatText = concatText.concat(stopWordsRemovedArray.join(' '));
-    aggregateReviews.push(concatText);
-    return review;
+    aggregateReviews = aggregateReviews.concat(review.title.concat(' ' + review.comment));
 };
 
 module.exports = router;

@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12">
+                    <table st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Overall Ratings</th>
+                            <th>Total Reviews</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="row in displayedCollection">
+                            <td>{{row.prodName}}</td>
+                            <td>{{row.starRatings}}</td>
+                            <td>{{row.totalReviewCount}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <!--<img class="img-fluid mb-5 d-block mx-auto" src="img/profile.png" alt="" ng-if="!showWordCloud">-->
+                    <div id="wordsCloud">
+                        <word-cloud words="words" width="width" height="height" padding="5"
+                                    rotate="rotate" use-tooltip="useTooltip" random="random"
+                                    use-transition="useTransition" on-click="wordClicked">
+                        </word-cloud>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="row">
+                <div class="col-md-12">
+                    <table st-table="reviewCollectionDisplay" st-safe-src="reviewCollection" class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Comment</th>
+                        </tr>
+                        <tr>
+                            <th colspan="5"><input st-search="" class="form-control" placeholder="review search ..." type="text"/></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="row in reviewCollectionDisplay">
+                            <td>{{row.title}}</td>
+                            <td>{{row.comment}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!--h1 class="text-uppercase mb-0">Start Bootstrap</h1-->
+
+
+    <!--<hr class="star-light">
+    <h2 class="font-weight-light mb-0">Flipkart - Amazon</h2>-->
+</div>

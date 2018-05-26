@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row" style="height: 200px">
+        <div class="col-md-12">
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-12">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <input class="form-control" ng-model="url" id="url" type="text" placeholder="Paste URL Here" required="required" data-validation-required-message="Please enter URL.">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-secondary btn-xl" id="analyzeURLButton" ng-click="scan()">
+                        Scan
+                    </button>
+                    <span us-spinner="{radius:10, width:8, length: 16}" spinner-key="spinner-1"></span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

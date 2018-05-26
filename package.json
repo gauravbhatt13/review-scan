@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "@uirouter/angularjs": "^1.0.18",
     "angular": "^1.7.0",
     "angular-d3-word-cloud": "^0.5.3",
     "angular-smart-table": "^2.1.11",
